@@ -11,7 +11,7 @@ import { asyncRouterMap, constantRouterMap } from '../../config/router.config'
 function hasPermission(permission, route) {
   if (route.meta && route.meta.permission) {
     let flag = false
-    for (let i = 0, len = permission.length; i < len; i++) {
+    for (let i = 0, len = permission.length; i < len; i += 1) {
       flag = route.meta.permission.includes(permission[i])
       if (flag) {
         return true
@@ -33,15 +33,15 @@ function hasPermission(permission, route) {
 function hasRole(roles, route) {
   if (route.meta && route.meta.roles) {
     return route.meta.roles.includes(roles.id)
-  } else {
-    return true
   }
+  return true
 }
 
 function filterAsyncRouter(routerMap, roles) {
   return routerMap.filter((route) => {
     if (hasPermission(roles.permissionList, route)) {
       if (route.children && route.children.length) {
+        // eslint-disable-next-line no-param-reassign
         route.children = filterAsyncRouter(route.children, roles)
       }
       return true

@@ -12,6 +12,7 @@
 
 <script>
 import { reactive, ref } from 'vue'
+// eslint-disable-next-line import/no-cycle
 import { asyncRouterMap } from '../config/router.config'
 import defaultSettings from '../config/defaultSettings'
 import SvgIcon from '../components/SvgIcon/SvgIcon.vue'
@@ -38,13 +39,13 @@ export default {
       hasSideMenu: true,
       hasHeader: true,
       hasFooterToolbar: false,
+      // eslint-disable-next-line no-return-assign
       setHasFooterToolbar: (has) => (state.hasFooterToolbar = has)
     })
 
     const routes = asyncRouterMap.find((item) => item.path === '/')
     const menus = ref((routes && routes.children) || [])
     const title = ref(defaultSettings.title)
-    console.log(menus)
 
     return {
       state,
