@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <a-button type="primary">Primary</a-button>
-  </div>
+  <div>Test</div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Test'
 }
 </script>
 

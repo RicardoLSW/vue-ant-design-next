@@ -18,7 +18,7 @@
 import { defineProps, reactive } from 'vue'
 
 defineProps({
-  msg: String,
+  msg: String
 })
 
 const state = reactive({ count: 0 })

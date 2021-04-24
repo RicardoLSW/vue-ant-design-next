@@ -3,7 +3,7 @@ import axios from 'axios'
 // 创建 axios 实例
 const request = axios.create({
   baseURL: process.env.VUE_APP_API_BASE_URL, // api base_url
-  timeout: 60000, // 请求超时时间
+  timeout: 60000 // 请求超时时间
 })
 
 /**
@@ -13,7 +13,7 @@ const request = axios.create({
  */
 const errorHandler = (error) => {
   if (error.response) {
-    const data = error.response.data
+    // const { data } = error.response
     switch (error.response.status) {
       case 403:
         // 拒绝访问
@@ -49,7 +49,7 @@ request.interceptors.request.use((config) => {
  */
 request.interceptors.response.use((response) => {
   if (response.config.responseType === 'blob') return response
-  else return response.data
+  return response.data
 }, errorHandler)
 
-export { request as axios }
+export default request
